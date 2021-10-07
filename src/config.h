@@ -7,4 +7,4 @@ void firstTime();
 bool cnfExists();
 
 string cnfGet(string);
-string cnfSet(string, string);
+string cnfSet(const string, const string);

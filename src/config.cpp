@@ -31,6 +31,7 @@ map<string, string> cnfParse(string cnf) {
   string line;
   istringstream ss(cnf);
 
+  // Split the string from the key=value format
   while (getline(ss, line)) {
     kvPairs[line.substr(0, line.find("="))] = line.substr(line.find("=")+1, line.length());
   }
@@ -45,11 +46,31 @@ string cnfGet(string key) {
 
   map<string, string> kvPairs = cnfParse(content);
 
+  // Check if the value exists
   if (kvPairs.find(key) == kvPairs.end()) return "null";
 
   return kvPairs.find(key)->second;
 }
 
-string cnfSet(string key, string value) {
+void cnfSet(string key, string value) {
+  fstream cnf(confDir, std::ofstream::out | std::ofstream::trunc);
+  map<string, string>::iterator it;
 
+  string content((istreambuf_iterator<char>(cnf)), istreambuf_iterator<char>());
+  map<string, string> kvPairs = cnfParse(content);
+
+  cout << "content: " << content << endl;
+  cout << "key: " << key << endl;
+  cout << "value: " << value << endl;
+
+  // Set the new value
+  kvPairs.insert({ key, value });
+
+  cout << "made it this far" << endl;
+
+  for (it = kvPairs.begin(); it != kvPairs.end(); it++) {
+    cnf << it->first << "=" << it->second << endl;
+  }
+
+  cnf.close();
 }

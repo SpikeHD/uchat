@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "config.h"
+
 using namespace std;
 
 vector<string> getArgs(string c) {
@@ -35,6 +37,8 @@ void setname(string name = "") {
   }
 
   cout << "Setting name to \"" << name << "\"..." << endl;
+
+  cnfSet("name", name);
 }
 
 void handle(string command) {
