@@ -12,7 +12,7 @@ int handleMessage() {
 
   cout << "> ";
 
-  cin >> m;
+  getline(cin, m);
 
   // If it starts with a slash, it's a command
   if (m.substr(0, 1) == "/") {
