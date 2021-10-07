@@ -4,6 +4,7 @@
 #include "helpers.h"
 #include "alert.h"
 #include "chat_commands.h"
+#include "config.h"
 
 using namespace std;
 
@@ -26,10 +27,18 @@ int main() {
   // Clear out the console
   clear();
 
+  // First-time setup
+  if (!cnfExists()) {
+    cout << "Performing first-time setup..." << endl;
+    firstTime();
+  }
+
   cout << "Welcome to uChat! I hope you enjoy your stay." << endl << endl;;
   cout << boxify("You are currently in a room by yourself. Use /help for information.", "Alert") << endl;
 
   while(!quit) {
     handleMessage();
   }
+
+  return 0;
 }
