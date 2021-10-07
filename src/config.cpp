@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -26,13 +26,13 @@ bool cnfExists() {
   return cnf.is_open();
 }
 
-vector<string, string> cnfParse(string cnf) {
-  vector<string, string> kvPairs;
+map<string, string> cnfParse(string cnf) {
+  map<string, string> kvPairs;
   string line;
-  istringstream s(cnf);
+  istringstream ss(cnf);
 
-  while (getline(s, line)) {
-    cout << line << endl;
+  while (getline(ss, line)) {
+    kvPairs[line.substr(0, line.find("="))] = line.substr(line.find("=")+1, line.length());
   }
 
   // Parse cnf into key-value pairs
@@ -43,7 +43,11 @@ string cnfGet(string key) {
   ifstream cnf(confDir);
   string content((istreambuf_iterator<char>(cnf)), istreambuf_iterator<char>());
 
-  vector<string, string> kvPairs = cnfParse(content);
+  map<string, string> kvPairs = cnfParse(content);
+
+  if (kvPairs.find(key) == kvPairs.end()) return "null";
+
+  return kvPairs.find(key)->second;
 }
 
 string cnfSet(string key, string value) {

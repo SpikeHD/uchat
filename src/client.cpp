@@ -8,10 +8,10 @@
 
 using namespace std;
 
-int handleMessage() {
+int handleMessage(string name) {
   string m;
 
-  cout << "> ";
+  cout << name << " > ";
 
   getline(cin, m);
 
@@ -23,6 +23,7 @@ int handleMessage() {
 
 int main() {
   bool quit = false;
+  string name = "NULL";
 
   // Clear out the console
   clear();
@@ -33,11 +34,13 @@ int main() {
     firstTime();
   }
 
+  name = cnfGet("name");
+
   cout << "Welcome to uChat! I hope you enjoy your stay." << endl << endl;;
   cout << boxify("You are currently in a room by yourself. Use /help for information.", "Alert") << endl;
 
   while(!quit) {
-    handleMessage();
+    handleMessage(name);
   }
 
   return 0;

@@ -28,16 +28,27 @@ void help() {
   cout << "Nobody can help you now..." << endl;
 }
 
-void setname(string name) {
-  cout << "Setting name to " + name << endl;
+void setname(string name = "") {
+  if (name.empty()) {
+    cout << "Provide a name to set!" << endl;
+    return;
+  }
+
+  cout << "Setting name to \"" << name << "\"..." << endl;
 }
 
 void handle(string command) {
   vector<string> args = getArgs(command);
   string c = args.front().substr(1, args.front().length());
 
+  // Arg check!
+  int totalArgs = args.size();
+
   // Ugly ifs ahead. Sorry.
-  if (c == "exit") exit();
+  if (c == "exit") exit();  
   if (c == "help") help();
-  if (c == "setname") setname(args[1]);
+
+  if (totalArgs == 2) {
+    if (c == "setname") setname(args[1]);
+  }
 }
