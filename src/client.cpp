@@ -6,9 +6,24 @@
 
 using namespace std;
 
+int handleMessage() {
+  string m;
+
+  cout << "> ";
+
+  cin >> m;
+}
+
 int main() {
+  bool quit = false;
+
   // Clear out the console
   clear();
 
-  cout << boxify("Welcome to uChat! I hope you enjoy your stay.", "Welcome!") << endl;
+  cout << "Welcome to uChat! I hope you enjoy your stay." << endl << endl;;
+  cout << boxify("You are currently in a room by yourself. Use /help for information.", "Alert") << endl;
+
+  while(!quit) {
+    handleMessage();
+  }
 }
