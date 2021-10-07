@@ -2,12 +2,13 @@
 #include <string>
 
 #include "helpers.h"
+#include "alert.h"
 
 using namespace std;
 
 int main() {
-  string x = "Yo";
+  // Clear out the console
   clear();
 
-  cout << x << endl;
+  cout << boxify("Welcome to uChat! I hope you enjoy your stay.", "Welcome!") << endl;
 }

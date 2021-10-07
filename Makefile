@@ -1,6 +1,6 @@
 all:
 	cd ./src && \
-	g++ client.cpp helpers.cpp -o ../build/uchat && \
+	g++ client.cpp helpers.cpp alert.cpp -o ../build/uchat && \
 	cd ../ && \
 	make run
 
