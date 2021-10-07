@@ -19,9 +19,17 @@ vector<string> getArgs(string c) {
   return arr;
 }
 
+void exit() {
+  cout << "See you next time!" << endl;
+  terminate();
+}
 
 void help() {
   cout << "Nobody can help you now..." << endl;
+}
+
+void setname(string name) {
+  cout << "Setting name to " + name << endl;
 }
 
 void handle(string command) {
@@ -29,5 +37,7 @@ void handle(string command) {
   string c = args.front().substr(1, args.front().length());
 
   // Ugly ifs ahead. Sorry.
+  if (c == "exit") exit();
   if (c == "help") help();
+  if (c == "setname") setname(args[1]);
 }
