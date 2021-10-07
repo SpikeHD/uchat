@@ -3,6 +3,7 @@
 
 #include "helpers.h"
 #include "alert.h"
+#include "chat_commands.h"
 
 using namespace std;
 
@@ -12,6 +13,11 @@ int handleMessage() {
   cout << "> ";
 
   cin >> m;
+
+  // If it starts with a slash, it's a command
+  if (m.substr(0, 1) == "/") {
+    handle(m);
+  }
 }
 
 int main() {
